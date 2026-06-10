@@ -30,6 +30,11 @@ export function TiltCard({
   const rotateY = useTransform(sx, [0, 1], [-max, max]);
   const glareX = useTransform(sx, [0, 1], ["0%", "100%"]);
   const glareY = useTransform(sy, [0, 1], ["0%", "100%"]);
+  const glareBg = useTransform(
+    [glareX, glareY],
+    ([gx, gy]) =>
+      `radial-gradient(circle at ${gx} ${gy}, rgba(255,255,255,0.35), transparent 55%)`
+  );
 
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = ref.current;
@@ -57,13 +62,7 @@ export function TiltCard({
         <motion.div
           aria-hidden
           className="pointer-events-none absolute inset-0 z-20 rounded-[inherit] opacity-0 mix-blend-overlay transition-opacity duration-300 group-hover:opacity-100"
-          style={{
-            background: useTransform(
-              [glareX, glareY],
-              ([gx, gy]) =>
-                `radial-gradient(circle at ${gx} ${gy}, rgba(255,255,255,0.35), transparent 55%)`
-            ),
-          }}
+          style={{ background: glareBg }}
         />
       )}
     </motion.div>

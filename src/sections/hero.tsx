@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import {
   motion,
+  MotionValue,
   useMotionValue,
   useScroll,
   useSpring,
@@ -27,9 +28,9 @@ function FloatingShot({
   alt: string;
   className: string;
   depth: number;
-  mx: ReturnType<typeof useSpring>;
-  my: ReturnType<typeof useSpring>;
-  scrollY: ReturnType<typeof useTransform>;
+  mx: MotionValue<number>;
+  my: MotionValue<number>;
+  scrollY: MotionValue<number>;
 }) {
   const x = useTransform(mx, (v) => v * depth);
   const y = useTransform(my, (v) => v * depth);
