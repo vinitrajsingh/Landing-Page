@@ -11,12 +11,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary:
-          "bg-cream text-ink-950 hover:bg-white",
+        primary: "bg-cream text-ink-950 hover:bg-white",
         gold: "bg-gold text-ink-950 hover:bg-gold-light",
         outline:
           "border border-white/15 bg-white/[0.03] text-cream hover:border-white/30",
         ghost: "text-cream/80 hover:text-cream",
+        // Light-theme variants (for the cream hero / light sections)
+        dark: "bg-ink-950 text-cream shadow-[0_10px_30px_-12px_rgba(10,10,11,0.6)] hover:bg-ink-800",
+        "light-outline":
+          "border border-ink-950/15 bg-white/60 text-ink-950 backdrop-blur hover:border-ink-950/35 hover:bg-white",
       },
       size: {
         sm: "h-10 px-5 text-sm",
@@ -47,8 +50,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(buttonVariants({ variant, size }), className)}
         {...props}
       >
-        {/* shimmer sweep */}
-        <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+        {/* shimmer sweep — dark sweep on light buttons, light sweep on dark ones */}
+        <span
+          className={cn(
+            "pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent to-transparent transition-transform duration-700 group-hover:translate-x-full",
+            variant === "light-outline"
+              ? "via-ink-950/10"
+              : variant === "primary"
+                ? "via-ink-950/15"
+                : "via-white/30"
+          )}
+        />
         <span className="relative z-10 flex items-center gap-2">
           {children}
           {withArrow && (

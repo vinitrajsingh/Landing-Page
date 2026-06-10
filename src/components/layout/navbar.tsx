@@ -64,7 +64,12 @@ export function Navbar() {
             <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-gold-light to-gold-dark text-sm font-bold text-ink-950">
               C
             </span>
-            <span className="font-display text-xl tracking-tight text-cream">
+            <span
+              className={cn(
+                "font-display text-xl tracking-tight transition-colors duration-300",
+                scrolled ? "text-cream" : "text-ink-950"
+              )}
+            >
               Creme
             </span>
           </button>
@@ -74,7 +79,12 @@ export function Navbar() {
               <button
                 key={link.href}
                 onClick={() => handleNav(link.href)}
-                className="rounded-full px-4 py-2 text-sm text-cream/65 transition-colors hover:text-cream"
+                className={cn(
+                  "rounded-full px-4 py-2 text-sm transition-colors",
+                  scrolled
+                    ? "text-cream/65 hover:text-cream"
+                    : "text-ink-700/70 hover:text-ink-950"
+                )}
               >
                 {link.label}
               </button>
@@ -88,7 +98,12 @@ export function Navbar() {
           </div>
 
           <button
-            className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-cream md:hidden"
+            className={cn(
+              "grid h-10 w-10 place-items-center rounded-full border transition-colors md:hidden",
+              scrolled
+                ? "border-white/10 text-cream"
+                : "border-ink-950/10 text-ink-950"
+            )}
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
