@@ -38,7 +38,7 @@ export function Hero() {
         <div className="max-w-4xl">
 
           {/* Headline */}
-          <h1 className="font-sans text-[12.5vw] font-semibold leading-[0.95] tracking-tightest sm:text-6xl md:text-7xl lg:text-[6.2rem]">
+          <h1 className="font-sans text-[10.5vw] font-semibold leading-[0.96] tracking-tightest sm:text-5xl md:text-6xl lg:text-[4.6rem]">
             <WordReveal
               as="span"
               text="From rough idea"
@@ -65,9 +65,8 @@ export function Hero() {
               <span className="reveal-mask">
                 <motion.span
                   initial={{ y: "120%" }}
-                  whileInView={{ y: "0%" }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.55 }}
+                  animate={{ y: "0%" }}
+                  transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: 0.6 }}
                   className="inline-block italic text-gold-dark"
                 >
                   fast.
@@ -78,7 +77,7 @@ export function Hero() {
 
           {/* Subheadline */}
           <FadeRise delay={0.6}>
-            <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-700/70 md:text-xl">
+            <p className="mt-7 max-w-lg text-base leading-relaxed text-ink-700/70 md:text-lg">
               We&apos;re the AI-native studio founders call when they need design,
               engineering and momentum in one team — shipping polished MVPs in
               weeks, not quarters.
@@ -87,11 +86,11 @@ export function Hero() {
 
           {/* CTAs */}
           <FadeRise delay={0.72}>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Button variant="dark" size="lg" withArrow>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Button variant="dark" size="sm" withArrow>
                 Book a Call
               </Button>
-              <Button variant="light-outline" size="lg">
+              <Button variant="light-outline" size="sm">
                 View Pricing
               </Button>
             </div>

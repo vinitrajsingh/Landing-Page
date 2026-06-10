@@ -4,6 +4,19 @@ import { ElementType, useMemo } from "react";
 import { motion, Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
 
+// Cache created motion components so we don't recreate them every render
+// and to use the non-deprecated motion.create() factory.
+type AnyMotion = ElementType<Record<string, unknown>>;
+const motionCache = new Map<ElementType, AnyMotion>();
+function getMotionTag(tag: ElementType): AnyMotion {
+  let cached = motionCache.get(tag);
+  if (!cached) {
+    cached = motion.create(tag) as AnyMotion;
+    motionCache.set(tag, cached);
+  }
+  return cached;
+}
+
 interface TextRevealProps {
   text: string;
   className?: string;
@@ -41,7 +54,7 @@ export function WordReveal({
     },
   };
 
-  const MotionTag = motion(Tag as ElementType);
+  const MotionTag = getMotionTag(Tag as ElementType);
 
   return (
     <MotionTag
